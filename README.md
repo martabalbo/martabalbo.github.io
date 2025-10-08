@@ -1,2 +1,2 @@
 # martabalbo.github.io
-site repository
+Diabetes Data Analysis project
