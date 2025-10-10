@@ -1,5 +1,5 @@
 layout: page 
 title: "About" 
-permalink: https://martabalbo.github.io/about
+permalink: /about
 
 Hi, I'm Marta!
