@@ -1,1 +1,1 @@
-Hi! I'm a BSc in Mathematics, and I'm trying to learn new thing related to programming and data analysis.
+This is my personal blog
