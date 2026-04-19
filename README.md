@@ -1,2 +1,1 @@
-# martabalbo.github.io
-Personal blog
+Hi! I'm a BSc in Mathematics, and I'm trying to learn new thing related to programming and data analysis.
