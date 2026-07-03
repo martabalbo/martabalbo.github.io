@@ -1,17 +1,19 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2026-04-19 19:29:27 +0200
-categories: jekyll update
+title:  "Knit Pattern Writer"
+date:   2026-07-03 22.19 +0100
+categories: programming
 ---
 
-Jekyll requires blog post files to be named according to the following format:
+This idea came to me when I was trying to knit my first scarf using a technique called double-knitting, which produces two interlocked layers of fabric. On the scarf there was a design in two colors (and the same one on the other side, with inverted colors).
 
-`YEAR-MONTH-DAY-title.MARKUP`
+I run into a problem: when trying to follow the design, which I drew on graph paper, I had to count out how many stitches in each color before knitting every color. So, I asked myself: what if I could create something that would count for me?
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+Then, I put the project on hold, because I didn't have the skillset to build it.
 
-Jekyll also offers powerful support for code snippets:
+After completing the Foundations course of [The Odin Project][https://www.theodinproject.com/], I realized I now had the necessary skills.
+
+
 
 {% highlight ruby %}
 def print_hi(name)
