@@ -23,7 +23,7 @@ Wanting to make the written pattern as clear as possible, I also added the chanc
 
 # Building the user interface
 
-I started by building a basic HTML page. It had a header with the title, and only three input boxes: two number input boxes for the grid height and width, and one dropdown menu for the color. At this stage, I was still thinking about double-knitting, which uses only two colors. Afterwards, I added the chance to select up to five colors via dropdown menus. I added also the "Create grid" and "Clear" buttons, to create and wipe clean the grid, and a couple of instructions to clarify what each step did.
+I started by building a basic HTML page. It had a header with the title, empty spaces for the grid and the written pattern, and only three input boxes: two number input boxes for the grid height and width, and one dropdown menu for the color. At this stage, I was still thinking about double-knitting, which uses only two colors. Afterwards, I added the chance to select up to five colors via dropdown menus. I added also the "Create grid" and "Clear" buttons, to create and wipe clean the grid, and a couple of instructions to clarify what each step did.
 
 When the grid was generating correctly, and it was possible to fill in, I added the needle selection section and the "Generate pattern" and "Print pattern" buttons. Afterwards, I added a tooltip to explain what changes the needle selection produced in the pattern.
 
@@ -58,6 +58,8 @@ One difficulty that I encountered with my scarf project was that I needed to rev
 To solve this issue I added the option to choose the type of needles, straight (that reverse every second row) or circular (that leave the pattern as is). I also added a tooltip to explain what changes with each choice.
 
 # Generating the written pattern
+
+
 
 # Next steps
 
