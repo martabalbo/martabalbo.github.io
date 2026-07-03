@@ -87,9 +87,13 @@ function mergeArray(arr, mergedArr) {
 
 The original array can now be used to write a string containing the current row of the written pattern.
 
+The current row is appended to the pattern, which is then added inside the empty pattern div.
+
 # Next steps
 
+Currently, the "print pattern" button does not work. To remedy this, and finish this project, I have to explore Javascript libraries to let the user print a pdf with their pattern. On the pattern, I want to signal which type of needles is for, maybe add an image of the grid and a title.
 
+Besides this, I want to add a few more features, like language selection to expand the user base, or making more obvious when a color is selected.
 
 
 
