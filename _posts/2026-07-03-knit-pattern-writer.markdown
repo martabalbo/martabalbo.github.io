@@ -13,7 +13,7 @@ Then, I put the project on hold, because I didn't have the skillset to build it.
 
 After completing the Foundations course of [The Odin Project][the-odin-project], I realized I now had the necessary skills.
 
-The site: [Knit Pattern Writer][knit-pattern-writer]. I'll leave you also with the [source code][knit-pattern-writer-github], if you want to follow along while reading this post.
+The end result: [Knit Pattern Writer][knit-pattern-writer]. I'll leave you also with the [source code][knit-pattern-writer-github], if you want to follow along while reading this post.
 
 # Project overview
 
