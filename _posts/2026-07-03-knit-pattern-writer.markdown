@@ -5,7 +5,7 @@ date:   2026-07-03 22.19 +0100
 categories: programming
 ---
 
-This idea came to me when I was trying to knit my first scarf using a technique called double-knitting, which produces two interlocked layers of fabric. On the scarf there was a design in two colors (and the same one on the other side, with inverted colors).
+This idea came to me when I was trying to knit my first scarf using a technique called double knitting, which produces two interlocked layers of fabric. On the scarf there was a design in two colors (and the same one on the other side, with inverted colors).
 
 I run into a problem: when trying to follow the design, which I drew on graph paper, I had to count out how many stitches in each color before knitting every color. So, I asked myself: what if I could create something that would count for me?
 
@@ -13,6 +13,29 @@ Then, I put the project on hold, because I didn't have the skillset to build it.
 
 After completing the Foundations course of [The Odin Project][the-odin-project], I realized I now had the necessary skills.
 
+# Project overview
+
+I wanted to build a site that allowed the user to create a grid, choosing its height and width, and fill the squares with one or more colors to create a personalized design. Then, some code would read the grid and generate a written pattern with the instructions needed to produce the design.
+
+At first, I only built a site that allowed the user to fill a grid with only one color, which is perfect for double knitting. Then, I wanted to give the chance to use the same site for colorwork, which can use more than two colors. So, I added the possibility to select up to five colors, not including white.
+
+Wanting to make the written pattern as clear as possible, I also added the chance for the user to rename the colors, using the user's input in the pattern.
+
+# Building the user interface
+
+I started by building a basic HTML page. It had a header with the title, and only three input boxes: two number input boxes for the grid height and width, and one dropdown menu for the color. At this stage, I was still thinking about double-knitting, which uses only two colors. Afterwards, I added the chance to select up to five colors via dropdown menus. I added also the "Create grid" and "Clear" buttons, to create and wipe clean the grid, and a couple of instructions to clarify what each step did.
+
+When the grid was generating correctly, and it was possible to fill in, I added the needle selection section and the "Generate pattern" and "Print pattern" buttons. Afterwards, I added a tooltip to explain what changes the needle selection produced in the pattern.
+
+To improve usability, I grouped all the buttons and input boxes on the left, using FlexBox to align each item. Then, I added a footer with links to the source code on GitHub.
+
+# Creating a grid
+
+# Coloring the grid
+
+# Generating the written pattern
+
+# Next steps
 
 
 {% highlight ruby %}
@@ -23,8 +46,5 @@ print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
 [the-odin-project]: https://www.theodinproject.com/
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
