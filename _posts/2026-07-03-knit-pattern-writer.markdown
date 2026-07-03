@@ -33,9 +33,9 @@ To improve usability, I grouped all the buttons and input boxes on the left, usi
 
 I aleready had to create a personalized grid and change the squares' colors in the [Etch-a-Sketch][etch-a-sketch-github] exercise from [The Odin Project][the-odin-project] (you can see the end product [here][etch-a-sketch]).
 
-I tried to use the same function, but it created the grid by column, which proved to be a problem when trying to parse the grid by row to generate the pattern. I used FlexBox to style the columns of the grid, making them rows, producing a grid that was built row by row.
+I tried to use the same function, `createGrid` but it created the grid by column, which proved to be a problem when trying to parse the grid by row to generate the pattern. So, I wrote `createGridByRow`, which uses FlexBox to style the columns of the grid, making them rows, and producing a grid that was built row by row.
 
-The first thing this function does is clear the grid space from any previous grid. It does so by removing child nodes, if any, inside the grid div.
+Before building the grid, this function clears the grid space from any previous grid. It does so by removing child nodes, if any, inside the grid div.
 
 Then, it gets the grid dimensions chosen by the user and uses them to build the grid, appending it to the empty grid div.
 
@@ -45,7 +45,7 @@ This time I needed to add a function to each square that would toggle the select
 
 To do this, I added the `toggleColor` function to the "select" button (the one that lets the user select a color after having chosen it from a dropdown menu). This function takes the selected color, and to each square adds an event listener, which changes its background from white to the color and back when clicked on.
 
-To clear the grid, I simply added an event listener to the "clear" button that would turn the squares' background color back to white.
+To clear the grid, I simply used `clearGrid` to add an event listener to the "clear" button that would turn the squares' background color back to white.
 
 # Choosing color names
 
