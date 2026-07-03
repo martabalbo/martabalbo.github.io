@@ -4,6 +4,10 @@ title: About
 permalink: /about/
 ---
 
+I'm a BSc graduate in Mathematics. This blog covers some of my interests: programming and data analysis, but also knitting and other fun stuff.
+
+Please keep in mind that I'm self-taught, so be patient with me!
+
 This blog is hosted on [Github Pages](https://docs.github.com/en/pages) using the base [Jekyll](https://github.com/jekyll) theme.
 
 [//]: # "This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)"
