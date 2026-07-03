@@ -59,18 +59,42 @@ To solve this issue I added the option to choose the type of needles, straight (
 
 # Generating the written pattern
 
+I wrote the `generatePattern` function, that like `createGrid` removes any child nodes of the pattern div. This lets the user modify the grid and correct the pattern with the alterations.
 
+To write this function, I started by trying to read the grid and save the information in a data structure. I chose an array for each of the rows, and decided to add each row to the pattern instead of trying to read it all in one go. Obtaining an array with one element per square, the element being a string that contained the square's color, was as easy as getting the square `id` and pushing it into the array.
+
+Then, I had to obtain, from an array like `[white, white, blue, white]`, something like `2 white, 1 blue, 1 white`. This prove to be tricky, and I achieved by writing the `mergeArray` function. This function reads the array until the elements are the same, moves these elements into a temporary array, counts them and adds to the original array the total and the first element of the temporary array.
+
+{% highlight javascript %}
+function mergeArray(arr, mergedArr) {
+    if (arr.length == 0) {
+        return;
+    }
+    
+    let temp = [];
+    let i = 0;
+    
+    do {
+        temp.push(arr.shift());
+        i++;
+    }
+    while(temp[0]==arr[0]);
+
+    mergedArr.push(temp.length, temp[0]);
+    /*mergedArr.push(temp.reduce( //older version with prime numbers to identify colors
+        (accumulator, currentValue) => accumulator * currentValue,
+        0,
+    ));*/
+    mergeArray(arr, mergedArr);
+};
+{% endhighlight %}
+
+The original array is modified in place, and can now be used to write a string containing the current row of the written pattern.
 
 # Next steps
 
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+
 
 
 [the-odin-project]: https://www.theodinproject.com/
