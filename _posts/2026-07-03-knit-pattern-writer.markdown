@@ -13,6 +13,8 @@ Then, I put the project on hold, because I didn't have the skillset to build it.
 
 After completing the Foundations course of [The Odin Project][the-odin-project], I realized I now had the necessary skills.
 
+The site: [Knit Pattern Writer][knit-pattern-writer]. I'll leave you also with the [source code][knit-pattern-writer-github], if you want to follow along while reading this post.
+
 # Project overview
 
 I wanted to build a site that allowed the user to create a grid, choosing its height and width, and fill the squares with one or more colors to create a personalized design. Then, some code would read the grid and generate a written pattern with the instructions needed to produce the design.
@@ -98,5 +100,7 @@ Besides this, I want to add a few more features, like language selection to expa
 
 
 [the-odin-project]: https://www.theodinproject.com/
+[knit-pattern-writer-github]: https://github.com/martabalbo/knit-pattern-writer
+[knit-pattern-writer]: https://martabalbo.github.io/knit-pattern-writer/
 [etch-a-sketch-github]: https://github.com/martabalbo/odin-etch-a-sketch
 [etch-a-sketch]: https://martabalbo.github.io/odin-etch-a-sketch/
