@@ -53,7 +53,7 @@ The `toggleColor` function also takes the content of the text input box that con
 
 # Choosing the needles
 
-One difficulty that I encountered with my scarf project was that I needed to reverse every other row of the pattern. I had to go back and forth with each new row, which is typical when using straight needles, and so I had to start reading every second row from right to left.
+One difficulty that I encountered with my scarf project was that I needed to reverse every other row of the pattern. I had to knit back and forth with each new row, which is typical when using straight needles, and so I had to start reading every second row from right to left.
 
 To solve this issue I added the option to choose the type of needles, straight (that reverse every second row) or circular (that leave the pattern as is). I also added a tooltip to explain what changes with each choice.
 
@@ -63,7 +63,7 @@ I wrote the `generatePattern` function, that like `createGrid` removes any child
 
 To write this function, I started by trying to read the grid and save the information in a data structure. I chose an array for each of the rows, and decided to add each row to the pattern instead of trying to read it all in one go. Obtaining an array with one element per square, the element being a string that contained the square's color, was as easy as getting the square `id` and pushing it into the array.
 
-Then, I had to obtain, from an array like `[white, white, blue, white]`, something like `2 white, 1 blue, 1 white`. This prove to be tricky, and I achieved by writing the `mergeArray` function. This function reads the array until the elements are the same, moves these elements into a temporary array, counts them and adds to the original array the total and the first element of the temporary array.
+Then, I had to obtain, from an array like `[white, white, blue, white]`, something like `2 white, 1 blue, 1 white`. This prove to be tricky, and I achieved by writing the `mergeArray` function. This function reads the array until the elements are the same, moves these elements into a temporary array, counts them and adds to the original array the total and the first element of the temporary array. Then, the same function is called recursively on the original array, until it's empty.
 
 {% highlight javascript %}
 function mergeArray(arr, mergedArr) {
@@ -81,15 +81,11 @@ function mergeArray(arr, mergedArr) {
     while(temp[0]==arr[0]);
 
     mergedArr.push(temp.length, temp[0]);
-    /*mergedArr.push(temp.reduce( //older version with prime numbers to identify colors
-        (accumulator, currentValue) => accumulator * currentValue,
-        0,
-    ));*/
     mergeArray(arr, mergedArr);
 };
 {% endhighlight %}
 
-The original array is modified in place, and can now be used to write a string containing the current row of the written pattern.
+The original array can now be used to write a string containing the current row of the written pattern.
 
 # Next steps
 
