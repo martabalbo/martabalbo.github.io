@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Knit Pattern Writer][knit-pattern-writer]"
+title:  "Knit Pattern Writer"
 date:   2026-07-03 22.19 +0100
 categories: programming
 ---
