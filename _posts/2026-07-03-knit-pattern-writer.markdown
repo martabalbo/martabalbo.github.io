@@ -53,6 +53,10 @@ The `toggleColor` function also takes the content of the text input box that con
 
 # Choosing the needles
 
+One difficulty that I encountered with my scarf project was that I needed to reverse every other row of the pattern. I had to go back and forth with each new row, which is typical when using straight needles, and so I had to start reading every second row from right to left.
+
+To solve this issue I added the option to choose the type of needles, straight (that reverse every second row) or circular (that leave the pattern as is). I also added a tooltip to explain what changes with each choice.
+
 # Generating the written pattern
 
 # Next steps
