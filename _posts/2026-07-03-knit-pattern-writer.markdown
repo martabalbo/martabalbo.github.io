@@ -31,6 +31,14 @@ To improve usability, I grouped all the buttons and input boxes on the left, usi
 
 # Creating a grid
 
+I aleready had to create a personalized grid and change the squares' colors in the [Etch-a-Sketch][etch-a-sketch-github] exercise from [The Odin Project][the-odin-project] (you can see the end product [here][etch-a-sketch]).
+
+I tried to use the same function, but it created the grid by column, which proved to be a problem when trying to parse the grid by row to generate the pattern. I used FlexBox to style the columns of the grid, making them rows, producing a grid that was built row by row.
+
+The first thing this function does is clear the grid space from any previous grid. It does so by removing child nodes, if any, inside the grid div.
+
+Then, it gets the grid dimensions chosen by the user and uses them to build the grid, appending it to the empty grid div.
+
 # Coloring the grid
 
 # Generating the written pattern
@@ -48,3 +56,5 @@ print_hi('Tom')
 
 
 [the-odin-project]: https://www.theodinproject.com/
+[etch-a-sketch-github]: https://github.com/martabalbo/odin-etch-a-sketch
+[etch-a-sketch]: https://martabalbo.github.io/odin-etch-a-sketch/
