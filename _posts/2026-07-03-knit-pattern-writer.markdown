@@ -41,6 +41,16 @@ Then, it gets the grid dimensions chosen by the user and uses them to build the 
 
 # Coloring the grid
 
+This time I needed to add a function to each square that would toggle the selected color on and off, as opposed to the [Etch-a-Sketch][etch-a-sketch-github] exercise, where the color couldn't be turned off.
+
+To do this, I added the `toggleColor` function to the "select" button (the one that lets the user select a color after having chosen it from a dropdown menu). This function takes the selected color, and to each square adds an event listener, which changes its background from white to the color and back when clicked on.
+
+To clear the grid, I simply added an event listener to the "clear" button that would turn the squares' background color back to white.
+
+# Choosing color names
+
+The `toggleColor` function also adds an `id` to the square, indicating which color it is. This is important for generating the pattern, so that it uses the color name chosen by the user.
+
 # Generating the written pattern
 
 # Next steps
