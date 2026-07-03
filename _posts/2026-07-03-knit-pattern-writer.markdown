@@ -49,7 +49,9 @@ To clear the grid, I simply added an event listener to the "clear" button that w
 
 # Choosing color names
 
-The `toggleColor` function also adds an `id` to the square, indicating which color it is. This is important for generating the pattern, so that it uses the color name chosen by the user.
+The `toggleColor` function also takes the content of the text input box that contains the color name chosen by the user. It adds this name as an `id` to the square. This is the color name used by the function that generates the pattern.
+
+# Choosing the needles
 
 # Generating the written pattern
 
