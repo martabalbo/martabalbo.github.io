@@ -39,7 +39,7 @@ The columns in the dataset are:
 
 I started by importing the necessary libraries.
 
-{% highlightpython %}
+{% highlight python %}
 
 import pandas as pd
 from sklearn.preprocessing import OrdinalEncoder
