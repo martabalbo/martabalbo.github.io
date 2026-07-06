@@ -15,7 +15,7 @@ This project was developed using Jupyter Notebooks. In this blog post I'll try t
 
 # Project Overview
 
-The dataset contains data collected by the Iraqi society, acquired from the laboratory of Medical City Hospital and the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital. As said before, this dataset was sourced from [Kaggle][kaggle].
+The dataset contains data collected by the Iraqi society, acquired from the laboratory of Medical City Hospital and the Specialized Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital. As said before, this dataset was sourced from [Kaggle][kaggle].
 
 The columns in the dataset are:
 
