@@ -5,8 +5,7 @@ date:   2026-07-06 11.54 +0100
 categories: data analysis
 ---
 
-# Warning 
-Website under construction
+# Warning: Website under construction
 
 This is an analysis of a diabetes dataset, which I did after completing the courses on [Kaggle][kaggle]. Afterwards, I chose a dataset from [Kaggle datasets][kaggle-datasets], and performed a basic analysis using pandas to ... and scikit-learn to ...
 
