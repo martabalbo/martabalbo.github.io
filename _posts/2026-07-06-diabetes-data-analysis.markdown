@@ -261,8 +261,8 @@ plot_gender(df)
 
 {% endhighlight %}
 
-![gender-1](/gender-1.png)
-![gender-2](/gender-2.png)
+![gender-1](./gender-1.png)
+![gender-2](./gender-2.png)
 
 ## Age Distribution
 
@@ -299,9 +299,9 @@ plot_age(df)
 
 {% endhighlight %}
 
-![age-1](/age-1.png)
-![age-2](/age-2.png)
-![age-3](/age-3.png)
+![age-1](./age-1.png)
+![age-2](./age-2.png)
+![age-3](./age-3.png)
 
 
 ## BMI Distribution
@@ -340,9 +340,9 @@ plot_BMI(df)
 
 {% endhighlight %}
 
-![bmi-1](/bmi-1.png)
-![bmi-2](/bmi-2.png)
-![bmi-3](/bmi-3.png)
+![bmi-1](./bmi-1.png)
+![bmi-2](./bmi-2.png)
+![bmi-3](./bmi-3.png)
 
 
 ## HbA1c Distribution
@@ -381,9 +381,9 @@ plot_HbA1c(df)
 
 {% endhighlight %}
 
-![HbAlc-1](/HbAlc-1.png)
-![HbAlc-2](/HbAlc-2.png)
-![HbAlc-3](/HbAlc-3.png)
+![HbAlc-1](./HbAlc-1.png)
+![HbAlc-2](./HbAlc-2.png)
+![HbAlc-3](./HbAlc-3.png)
 
 ## Cholesterol Distribution
 
@@ -422,9 +422,9 @@ plot_Chol(df)
 
 {% endhighlight %}
 
-![chol-1](/chol-1.png)
-![chol-2](/chol-2.png)
-![chol-3](/chol-3.png)
+![chol-1](./chol-1.png)
+![chol-2](./chol-2.png)
+![chol-3](./chol-3.png)
 
 # Hypotesis Testing
 
