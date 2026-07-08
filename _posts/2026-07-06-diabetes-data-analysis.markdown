@@ -428,6 +428,195 @@ plot_Chol(df)
 
 # Hypotesis Testing
 
+Next, I used Hypotesis testing to check whether each of the factors considered influences the risk of developing Type 2 diabetes.
+
+## Hypotesis 1
+
+* **Null Hypothesis $ H_0 $**: female and male patients have equal risk of developing diabetes
+* **Alternative Hypothesis $ H_1 $**: female and male patients do not have equal risk of developing diabetes
+
+To test the first hypothesis, I used the $\\chi^2$ test of independence.
+
+{% highlight python %}
+
+from scipy.stats import chi2_contingency
+
+def chi_square_p_value(df, index_col, column_col):
+    observations = pd.crosstab(index=df[index_col], columns=df[column_col],margins=True)
+    chi2, p, dof, ex = chi2_contingency(observations)
+
+    return p
+
+print("p =", chi_square_p_value(df, "Gender", "CLASS"))
+
+{% endhighlight %}
+
+The resulting value of $ p $ is $ p = 0.028005557466185264
+$, so, with $ \\alpha = 0.05 $, I rejected the null hypotesis and concluded that the gender of the patients influences the risk of developing diabetes.
+
+## Hypotesis 2
+
+* **Null Hypothesis $ H_0 $**: there is no difference in age among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis $ H_1 $**: there is a difference in age among diabetic, non-diabetic, and predict-diabetic people
+
+## Hypotesis 3
+
+* **Null Hypothesis $ H_0 $**: there is no difference in BMI among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis $ H_1 $**: there is a difference in BMI among diabetic, non-diabetic, and predict-diabetic people
+
+## Hypotesis 4
+
+* **Null Hypothesis $ H_0 $**: there is no difference in cholesterol level among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis $ H_1 $**: there is a difference in cholesterol level among diabetic, non-diabetic, and predict-diabetic people
+
+## Hypotesis 5
+
+* **Null Hypothesis $ H_0 $**: there is no difference in glucose level among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis $ H_1 $**: there is a difference in glucose level among diabetic, non-diabetic, and predict-diabetic people
+
+To test these last four hypoteses, I could have used the one-way ANOVA, but I first had to check whether the needed assumptions were true. I assumed the observations are independent from one another (I eliminated the duplicates, so each observation refers to a different patient).
+
+I tested for the homogeneity of variance, using the Levene's test.
+
+{% highlight python %}
+
+#levene's test for homogeneity of variance
+import pingouin as pg
+
+variables = ['AGE', 'BMI', 'Chol', 'HbA1c']
+
+results = []
+for var in variables:
+    res = pg.homoscedasticity(data=df, 
+                    dv=var, 
+                    group="CLASS",
+                    method='levene')
+    res['variable'] = var
+    results.append(res)
+
+results_df = pd.concat(results, ignore_index = True)
+
+#results: W statistic (used to calculate the p-value), p-value, whether the variance is homogeneous or not and variable
+
+
+print(results_df)
+
+{% endhighlight %}
+
+{% highlight python %}
+
+           W          pval  equal_var variable
+0   7.907853  3.965379e-04      False      AGE
+1  33.444493  1.086386e-14      False      BMI
+2   3.464882  3.173427e-02      False     Chol
+3  67.522324  7.066155e-28      False    HbA1c
+
+{% endhighlight %}
+
+The Levene test showed that the variance is not homogeneous for each of the variables considered.
+
+Then I tested the normality assumption, using Shapiro-Wilk test.
+
+{% highlight python %}
+
+#Shapiro-Wilk test with Pingouin
+
+#variables = ['AGE', 'BMI', 'Chol', 'HbA1c']
+
+results = []
+
+for var in variables:
+    df_reduced = df[['CLASS', var]]
+    res = pg.normality(data=df_reduced, dv=var, group='CLASS', method='shapiro')
+    res['variable'] = var
+    results.append(res)
+
+results_df = pd.concat(results)
+
+#results: W statistic (between 0 and 1, close to 1 indicates closeness to normal distribution), p-value, whether the null hypotesis of normality is rejected or not and variable
+
+print(results_df)
+
+{% endhighlight %}
+
+{% highlight python %}
+
+              W          pval  normal variable
+CLASS                                         
+0.0    0.943575  4.675616e-04   False      AGE
+1.0    0.870684  2.980315e-04   False      AGE
+2.0    0.882678  1.994845e-22   False      AGE
+0.0    0.904004  3.647965e-06   False      BMI
+1.0    0.915101  5.419163e-03   False      BMI
+2.0    0.987358  1.120847e-05   False      BMI
+0.0    0.892072  1.047556e-06   False     Chol
+1.0    0.933442  2.089255e-02   False     Chol
+2.0    0.974938  1.732654e-09   False     Chol
+0.0    0.751057  2.157384e-11   False    HbA1c
+1.0    0.941431  3.864855e-02   False    HbA1c
+2.0    0.991829  7.488554e-04   False    HbA1c
+
+{% endhighlight %}
+
+The Shapiro-Wilk test shows that the residuals for each of the variables are not normally distributed.
+
+I also used the QQ-plot to show a lack of normality. Here, you can see the QQ-plot for the age variable.
+
+{% highlight python %}
+
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+formula = 'AGE ~ CLASS'
+
+model = ols(formula, data=df).fit()
+res = model.resid
+
+#QQ plot (quantile-quantile plot)
+
+ax = pg.qqplot(res, dist='norm')
+sns.despine()
+
+{% endhighlight %}
+
+![qq-plot](./qq-plot.png)
+
+The coeffincient of correlation $ R^2 $ indicates that the data is very close to the normal distribution. The discrepancy can be due to various reasons, like the fact that this coefficient does not consider the distribution of the residuals, the presence of outliers or the non-homoscedasticity of the data.
+
+Since the data is not normally distributed and the variance is not homogeneous, I used the Kruskal-Wallis test instead of the one-way ANOVA.
+
+{% highlight python %}
+
+#kruskal-wallis test (if the data is not normally distributed)
+
+results = []
+
+for var in  variables:
+    res = pg.kruskal(data=df, 
+        dv=var, 
+        between='CLASS')
+    res['variable'] = var
+    results.append(res)
+
+results_df = pd.concat(results, ignore_index = True)
+
+#results: degrees of freedom, H statistic, uncorrected p-value, variable
+
+print(results_df)
+
+{% endhighlight %}
+
+{% highlight python %}
+
+  Source  ddof1           H         p-unc variable
+0  CLASS      2  196.168160  2.527117e-43      AGE
+1  CLASS      2  272.864186  5.601378e-60      BMI
+2  CLASS      2   43.635563  3.347016e-10     Chol
+3  CLASS      2  286.329535  6.673160e-63    HbA1c
+
+{% endhighlight %}
+
+As before, with $ \\alpha = 0.05 $, we reject the null hypoteses. I concluded that the gender, age, glucose and cholesterol levels of the patients all influence the risk of developing diabetes.
 
 
 {% highlight python %}
