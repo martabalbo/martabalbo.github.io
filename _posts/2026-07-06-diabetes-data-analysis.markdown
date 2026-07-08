@@ -81,28 +81,147 @@ This is the resulting dataset:
       4    504      M   33   7.1  46    4.9   4.9  1.0  0.8  2.0   0.4  21.0     N
       ..   ...    ...  ...   ...  ..    ...   ...  ...  ...  ...   ...   ...   ...
       995  200      M   71  11.0  97    7.0   7.5  1.7  1.2  1.8   0.6  30.0     Y
-      996  671      M   31   3.0  60   12.3   4.1  2.2  0.7  2.4  15.4  37.2    Y
-      997  669      M   30   7.1  81    6.7   4.1  1.1  1.2  2.4   8.1  27.4    Y
-      998   99      M   38   5.8  59    6.7   5.3  2.0  1.6  2.9  14.0  40.5    Y
-      999  248      M   54   5.0  67    6.9   3.8  1.7  1.1  3.0   0.7  33.0    Y
+      996  671      M   31   3.0  60   12.3   4.1  2.2  0.7  2.4  15.4  37.2     Y
+      997  669      M   30   7.1  81    6.7   4.1  1.1  1.2  2.4   8.1  27.4     Y
+      998   99      M   38   5.8  59    6.7   5.3  2.0  1.6  2.9  14.0  40.5     Y
+      999  248      M   54   5.0  67    6.9   3.8  1.7  1.1  3.0   0.7  33.0     Y
 
       [1000 rows x 13 columns]
       Index(['ID', 'Gender', 'AGE', 'Urea', 'Cr', 'HbA1c', 'Chol', 'TG', 'HDL',
             'LDL', 'VLDL', 'BMI', 'CLASS'],
             dtype='object')
-     ]
-    }
-   ],
-   "source": [
-    "df = load_data()\n",
-    "\n",
-    "print(df)\n",
-    "print(df.columns)"
-   ]
-  }
 
 {% endhighlight %}
 
+# Project Questions and Objectives
+
+I choose two objectives, ones that allowed me to work with both data analysis and machine learning.
+
+The first part was about data analysis. Considering age, gender, BMI, blood sugar level and cholesterol, which of these factors are risk factors for Type 2 diabetes?
+
+The second used machine learning: develop a machine learning model that can predict diabetes status (Diabetic, Non-Diabetic or Predict-Diabetic).
+
+# Data Cleaning and Pre-Processing
+
+The first step was making the data easier to work with.
+
+I did it by removing duplicates and null values. There were no null values, as you can see with this function.
+
+{& highlight python &}
+
+def clean_data(df):
+    print(df.isna().any())
+    df.dropna(inplace=True)
+
+    df.drop_duplicates(['Gender', 'AGE', 'Urea', 'Cr', 'HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI', 'CLASS'], inplace=True)
+
+    df.reset_index(drop=True, inplace=True)
+
+clean_data(df)
+
+{& endhighlight &}
+
+{& highlight python &}
+
+ID        False
+Gender    False
+AGE       False
+Urea      False
+Cr        False
+HbA1c     False
+Chol      False
+TG        False
+HDL       False
+LDL       False
+VLDL      False
+BMI       False
+CLASS     False
+dtype: bool
+
+{& endhighlight &}
+
+Furthermore, to render the data easier to analyze, I decide to encode the 'Gender' and 'CLASS' after checking how many values appear in them.
+
+{& highlight python &}
+
+def data_exploration(df):
+    # find problems in categorical rows
+    print(df['Gender'].unique()) 
+    print(df['CLASS'].unique())
+    
+    # find how big are problems in categorical rows
+    print(df['Gender'].value_counts())
+    print(df['CLASS'].value_counts())
+
+data_exploration(df)
+
+{& endhighlight &}
+
+{& highlight python &}
+
+['F' 'M' 'f']
+['N' 'N ' 'P' 'Y' 'Y ']
+Gender
+M    467
+F    363
+f      1
+Name: count, dtype: int64
+CLASS
+Y     691
+N      95
+P      40
+Y       4
+N       1
+Name: count, dtype: int64
+
+{& endhighlight &}
+
+Since the unexpected values are relatively few, I simply dropped those from the database.
+
+I decided to encode the columns with F = 0 and M = 1 for 'Gender', and with N = 0, P = 1, Y = 2 for 'CLASS'.
+
+
+{& highlight python &}
+
+def pre_process_data(df):
+    # drop 'N ' and 'Y ' values from 'CLASS', and 'f' values from 'Gender' (they are a small enough number)
+    df.drop(df[(df['CLASS']=='Y ') | (df['CLASS']=='N ') | (df['Gender']=='f')].index, inplace=True)
+    
+    # encode 'Gender' and 'CLASS' columns: [F=0, M=1] and ['N'=0, 'P'=1, 'Y'=2]
+    enc = OrdinalEncoder()
+    df[['Gender', 'CLASS']] = enc.fit_transform(df[['Gender', 'CLASS']])
+    
+    return df
+
+pre_process_data(df)
+
+{& endhighlight &}
+
+{& highlight python &}
+
+	ID	Gender	AGE	Urea	Cr	HbA1c	Chol	TG	HDL	LDL	VLDL	BMI	CLASS
+0	502	0.0	50	4.7	46	4.9	4.2	0.9	2.4	1.4	0.5	24.0	0.0
+1	735	1.0	26	4.5	62	4.9	3.7	1.4	1.1	2.1	0.6	23.0	0.0
+2	504	1.0	33	7.1	46	4.9	4.9	1.0	0.8	2.0	0.4	21.0	0.0
+3	634	0.0	45	2.3	24	4.0	2.9	1.0	1.0	1.5	0.4	21.0	0.0
+4	721	0.0	50	2.0	50	4.0	3.6	1.3	0.9	2.1	0.6	24.0	0.0
+...	...	...	...	...	...	...	...	...	...	...	...	...	...
+821	194	0.0	57	4.1	70	9.3	5.3	3.3	1.0	1.4	1.3	29.0	2.0
+823	196	1.0	55	3.1	39	8.5	5.0	2.5	1.9	2.9	0.7	27.0	2.0
+824	198	1.0	28	3.5	61	8.5	4.5	1.9	1.1	2.6	0.8	37.0	2.0
+825	199	1.0	69	10.3	185	7.7	4.9	1.9	1.2	3.0	0.7	37.0	2.0
+826	200	1.0	71	11.0	97	7.0	7.5	1.7	1.2	1.8	0.6	30.0	2.0
+825 rows × 13 columns
+
+{& endhighlight &}
+
+# Exploratory Data Analysis (EDA)
+
+
+
+{& highlight python &}
+
+{& endhighlight &}
 
 [kaggle]: https://www.kaggle.com/
 [kaggle-datasets]: https://www.kaggle.com/datasets
