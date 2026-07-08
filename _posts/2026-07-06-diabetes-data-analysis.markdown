@@ -107,7 +107,7 @@ The first step was making the data easier to work with.
 
 I did it by removing duplicates and null values. There were no null values, as you can see with this function.
 
-{& highlight python &}
+{% highlight python %}
 
 def clean_data(df):
     print(df.isna().any())
@@ -119,9 +119,9 @@ def clean_data(df):
 
 clean_data(df)
 
-{& endhighlight &}
+{% endhighlight %}
 
-{& highlight python &}
+{% highlight python %}
 
 ID        False
 Gender    False
@@ -138,11 +138,11 @@ BMI       False
 CLASS     False
 dtype: bool
 
-{& endhighlight &}
+{% endhighlight %}
 
 Furthermore, to render the data easier to analyze, I decide to encode the 'Gender' and 'CLASS' after checking how many values appear in them.
 
-{& highlight python &}
+{% highlight python %}
 
 def data_exploration(df):
     # find problems in categorical rows
@@ -155,9 +155,9 @@ def data_exploration(df):
 
 data_exploration(df)
 
-{& endhighlight &}
+{% endhighlight %}
 
-{& highlight python &}
+{% highlight python %}
 
 ['F' 'M' 'f']
 ['N' 'N ' 'P' 'Y' 'Y ']
@@ -174,14 +174,14 @@ Y       4
 N       1
 Name: count, dtype: int64
 
-{& endhighlight &}
+{% endhighlight %}
 
 Since the unexpected values are relatively few, I simply dropped those from the database.
 
 I decided to encode the columns with F = 0 and M = 1 for 'Gender', and with N = 0, P = 1, Y = 2 for 'CLASS'.
 
 
-{& highlight python &}
+{% highlight python %}
 
 def pre_process_data(df):
     # drop 'N ' and 'Y ' values from 'CLASS', and 'f' values from 'Gender' (they are a small enough number)
@@ -195,9 +195,9 @@ def pre_process_data(df):
 
 pre_process_data(df)
 
-{& endhighlight &}
+{% endhighlight %}
 
-{& highlight python &}
+{% highlight python %}
 
 	ID	Gender	AGE	Urea	Cr	HbA1c	Chol	TG	HDL	LDL	VLDL	BMI	CLASS
 0	502	0.0	50	4.7	46	4.9	4.2	0.9	2.4	1.4	0.5	24.0	0.0
@@ -213,15 +213,15 @@ pre_process_data(df)
 826	200	1.0	71	11.0	97	7.0	7.5	1.7	1.2	1.8	0.6	30.0	2.0
 825 rows × 13 columns
 
-{& endhighlight &}
+{% endhighlight %}
 
 # Exploratory Data Analysis (EDA)
 
 
 
-{& highlight python &}
+{% highlight python %}
 
-{& endhighlight &}
+{% endhighlight %}
 
 [kaggle]: https://www.kaggle.com/
 [kaggle-datasets]: https://www.kaggle.com/datasets
