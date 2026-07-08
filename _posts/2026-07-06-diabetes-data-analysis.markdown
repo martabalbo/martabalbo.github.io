@@ -618,6 +618,19 @@ print(results_df)
 
 As before, with $ \\alpha = 0.05 $, we reject the null hypoteses. I concluded that the gender, age, glucose and cholesterol levels of the patients all influence the risk of developing diabetes.
 
+# Predictive Analitycs
+
+
+
+## Pre-Processing
+
+## Building the Model
+
+## Testing the Features
+
+
+# Observations
+
 
 {% highlight python %}
 
