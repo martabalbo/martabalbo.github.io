@@ -58,38 +58,38 @@ def load_data(path='Multiclass Diabetes Dataset - Original.csv'):
     
     return df
 
+{% endhighlight %}
+
+{% highlight python %}
+
 df = load_data()
 
 print(df)
 print(df.columns)
 
+{% endhighlight %}
 
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "56c83082",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "      ID Gender  AGE  Urea  Cr  HbA1c  Chol   TG  HDL  LDL  VLDL   BMI CLASS\n",
-      "0    502      F   50   4.7  46    4.9   4.2  0.9  2.4  1.4   0.5  24.0     N\n",
-      "1    735      M   26   4.5  62    4.9   3.7  1.4  1.1  2.1   0.6  23.0     N\n",
-      "2    420      F   50   4.7  46    4.9   4.2  0.9  2.4  1.4   0.5  24.0     N\n",
-      "3    680      F   50   4.7  46    4.9   4.2  0.9  2.4  1.4   0.5  24.0     N\n",
-      "4    504      M   33   7.1  46    4.9   4.9  1.0  0.8  2.0   0.4  21.0     N\n",
-      "..   ...    ...  ...   ...  ..    ...   ...  ...  ...  ...   ...   ...   ...\n",
-      "995  200      M   71  11.0  97    7.0   7.5  1.7  1.2  1.8   0.6  30.0     Y\n",
-      "996  671      M   31   3.0  60   12.3   4.1  2.2  0.7  2.4  15.4  37.2    Y \n",
-      "997  669      M   30   7.1  81    6.7   4.1  1.1  1.2  2.4   8.1  27.4    Y \n",
-      "998   99      M   38   5.8  59    6.7   5.3  2.0  1.6  2.9  14.0  40.5    Y \n",
-      "999  248      M   54   5.0  67    6.9   3.8  1.7  1.1  3.0   0.7  33.0    Y \n",
-      "\n",
-      "[1000 rows x 13 columns]\n",
-      "Index(['ID', 'Gender', 'AGE', 'Urea', 'Cr', 'HbA1c', 'Chol', 'TG', 'HDL',\n",
-      "       'LDL', 'VLDL', 'BMI', 'CLASS'],\n",
-      "      dtype='object')\n"
+This is the resulting dataset:
+
+{% highlight python %}
+
+            ID Gender  AGE  Urea  Cr  HbA1c  Chol   TG  HDL  LDL  VLDL   BMI CLASS
+      0    502      F   50   4.7  46    4.9   4.2  0.9  2.4  1.4   0.5  24.0     N
+      1    735      M   26   4.5  62    4.9   3.7  1.4  1.1  2.1   0.6  23.0     N
+      2    420      F   50   4.7  46    4.9   4.2  0.9  2.4  1.4   0.5  24.0     N
+      3    680      F   50   4.7  46    4.9   4.2  0.9  2.4  1.4   0.5  24.0     N
+      4    504      M   33   7.1  46    4.9   4.9  1.0  0.8  2.0   0.4  21.0     N
+      ..   ...    ...  ...   ...  ..    ...   ...  ...  ...  ...   ...   ...   ...
+      995  200      M   71  11.0  97    7.0   7.5  1.7  1.2  1.8   0.6  30.0     Y
+      996  671      M   31   3.0  60   12.3   4.1  2.2  0.7  2.4  15.4  37.2    Y
+      997  669      M   30   7.1  81    6.7   4.1  1.1  1.2  2.4   8.1  27.4    Y
+      998   99      M   38   5.8  59    6.7   5.3  2.0  1.6  2.9  14.0  40.5    Y
+      999  248      M   54   5.0  67    6.9   3.8  1.7  1.1  3.0   0.7  33.0    Y
+
+      [1000 rows x 13 columns]
+      Index(['ID', 'Gender', 'AGE', 'Urea', 'Cr', 'HbA1c', 'Chol', 'TG', 'HDL',
+            'LDL', 'VLDL', 'BMI', 'CLASS'],
+            dtype='object')
      ]
     }
    ],
