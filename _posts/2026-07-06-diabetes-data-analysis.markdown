@@ -616,15 +616,112 @@ print(results_df)
 
 {% endhighlight %}
 
-As before, with $ \\alpha = 0.05 $, we reject the null hypoteses. I concluded that the gender, age, glucose and cholesterol levels of the patients all influence the risk of developing diabetes.
+As before, with $ \\alpha = 0.05 $, I rejected the null hypoteses. I concluded that the gender, age, glucose and cholesterol levels of the patients all influence the risk of developing diabetes.
 
 # Predictive Analitycs
 
-
+After the analysis, I built a model to try and predict the patient's class (and diabetes status). I decided to use logistic regression to do so, given the need to classify the patients in teh three classes (diabetic, non diabetic or predict-diabetic).
 
 ## Pre-Processing
 
+The first step was to select some rows of the dataframe, to balance the number of rows for every class. If I left the dataset as is, the model would have learned to predict a diabetes diagnosis based solely on the fact that diabetic patients are so predominant.
+
+{% highlight python %}
+
+#reduce the number of rows to balance the number of patients of every class
+from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
+
+def select_rows_random(df, X, y):
+    dict_sample_sizes = {0: 90, 1: 40, 2: 120}
+    X_res, y_res = RandomUnderSampler(sampling_strategy=dict_sample_sizes, random_state=42).fit_resample(X, y)
+    return X_res, y_res
+
+def select_rows_cc(df, X, y):
+    dict_sample_sizes = {0: 65, 1: 20, 2: 120}
+    X_res, y_res = ClusterCentroids(sampling_strategy=dict_sample_sizes, random_state=42).fit_resample(X, y)
+    return X_res, y_res
+{% endhighlight %}
+
+I wrote two different functions to select the rows, and Iused the second one in this project. The Clustering Centroids methos is less random, because the random choice is performed only after clustering the data based on its features.
+
+
 ## Building the Model
+
+I loaded the training and validation data, using all the columns, minus the 'CLASS' column, as features.
+
+I decided to pre-process only the training data, to validate the model on real-world data.
+
+As said before, I chose to pre-process the data using the cluster centroids method.
+
+{% highlight python %}
+from sklearn.model_selection import train_test_split
+
+#select features and target
+X = df.drop(columns=['CLASS'])
+y = df['CLASS']
+
+X_train, X_valid, y_train, y_valid = train_test_split(X, y)
+
+#X, y = select_rows_random(df, X, y)
+X_train, y_train = select_rows_cc(df, X_train, y_train)
+{% endhighlight %}
+
+Then I built the model using logistic regression.
+
+{% highlight python %}
+from sklearn import datasets, linear_model, metrics
+from sklearn.metrics import f1_score, roc_auc_score
+from sklearn.model_selection import StratifiedKFold, cross_validate
+
+log_reg = linear_model.LogisticRegression(max_iter=100000, random_state=0)
+
+#ensure that the class proportion is maintained
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+scoring = {
+    "f1": "f1_weighted",
+    "accuracy": "accuracy",
+    "precision": "precision_weighted",
+    "recall": "recall_weighted",
+    "roc_auc": "roc_auc_ovr"
+}
+
+results_scores = cross_validate(log_reg, X, y, cv=cv, scoring=scoring)
+{% endhighlight %}
+
+Then I checked the model performance. I could have used accuracy (the number of correct predictions), but that would have been accurate only if there were no class imbalance. Instead, I checked the F1 score, a metric that takes into account not only the number of errors, but also the type of errors (differentiating betweeen false positives and false negatives). 
+
+{% highlight python %}
+print("F1 per fold:", results_scores['test_f1'])
+print("F1 Mean:", results_scores['test_f1'].mean())
+{% endhighlight %}
+
+{% highlight python %}
+
+F1 per fold: [0.92009738 0.87090048 0.93569731 0.89814613 0.90278686]
+F1 Mean: 0.9055256308627527
+{% endhighlight %}
+
+Given the fact that the mean F1 score over the folds is above 0.9, the model performance is quite good.
+
+I also considered another score, the ROC-AUC score (Receiver Operating Characteristic Area Under the Curve). This metric plots the true positive rate (TPR) against the false positive rate (FPR) and measures the area under the resulting curve, getting a single number that summarizes the classifier's performance across all possible classification thresholds.
+
+I had to use the One vs Rest method, given that the ROC-AUC score is a binary classification method and I had three classes.
+
+{% highlight python %}
+print("ROC-AUC (One vs Rest) per fold:", results_scores['test_roc_auc'])
+print("ROC-AUC (One vs Rest) Mean:", results_scores['test_roc_auc'].mean())
+
+{% endhighlight %}
+
+{% highlight python %}
+
+ROC-AUC (One vs Rest) per fold: [0.98356455 0.94194185 0.97494265 0.9518686  0.95783405]
+ROC-AUC (One vs Rest) Mean: 0.9620303362719458
+
+{% endhighlight %}
+
+The mean ROC-AUC score over the folds is also above 0.9.
 
 ## Testing the Features
 
