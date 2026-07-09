@@ -725,13 +725,45 @@ The mean ROC-AUC score over the folds is also above 0.9.
 
 ## Testing the Features
 
-
-# Observations
-
+I tested the model on different sets of features. I used permutation importance, a method that randomly shuffles a single column of the validation data, leaving the target and all other columns in place. The predictions that vary a lot after the shuffling are the most influential with the model being examined.
 
 {% highlight python %}
 
+import eli5
+from eli5.sklearn import PermutationImportance
+
+log_reg.fit(X_train, y_train)
+
+perm = PermutationImportance(log_reg, random_state=1).fit(X_valid, y_valid)
+eli5.show_weights(perm, feature_names = X_valid.columns.tolist())
+
 {% endhighlight %}
+
+{% highlight python %}
+          Weight	  Feature
+ 0.1401 ± 0.0061	  HbA1c
+ 0.0696 ± 0.0297	  BMI
+ 0.0068 ± 0.0077	  AGE
+ 0.0048 ± 0.0106	  Chol
+ 0.0039 ± 0.0039	  TG
+ 0.0010 ± 0.0197	  Urea
+ 0.0010 ± 0.0072	  HDL
+ 0.0010 ± 0.0039	  Cr
+ 0.0000 ± 0.0137	  ID
+ 0.0000 ± 0.0086	  VLDL
+ 0.0000 ± 0.0106      LDL
+-0.0029 ± 0.0047      Gender
+{% endhighlight %}
+
+The table shows that the data that improves predictions the most is the blood glucose level, followed by the patient's BMI. The triglycerides level is the only other slightly relevant data, but the rest of data do not improve the model predictive power.
+
+With hypothesis testing I saw that age, gender and cholesterol also are correlated to a diabetes diagnosis. This discrepancy can be due to the fact that they effectively influence the risk of developing diabetes, but they are not used by the model because the diabetes diagnosis is better explained by blood glucose level and the patient's BMI.
+
+# Observations
+
+The final results are really good. In the Hypothesis Testing section, I obtained very low p-values, the highest being 3.347016e-10 for the impact of cholesterol level on diabetes diagnosis. In the Predictive Analytics section, similarly, I got very high metric values, both above 0.9.
+
+This seems too good to be true, and it is possibly due to the dataset, which could contain too polished data.
 
 [kaggle]: https://www.kaggle.com/
 [kaggle-datasets]: https://www.kaggle.com/datasets
