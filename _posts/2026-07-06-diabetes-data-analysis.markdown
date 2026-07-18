@@ -5,7 +5,7 @@ date:   2026-07-06 11.54 +0100
 categories: data analysis
 ---
 
-This is an analysis of a diabetes dataset, which I did after completing the courses on [Kaggle][kaggle]. Afterwards, I chose a dataset from [Kaggle datasets][kaggle-datasets], and performed a basic analysis using pandas to ... and scikit-learn to ...
+This is an analysis of a diabetes dataset, which I did after completing the courses on [Kaggle][kaggle]. Afterwards, I chose a dataset from [Kaggle datasets][kaggle-datasets], and performed a basic analysis with Python. I used pandas for exploratory data analysis and hypotesis testing, and scikit-learn for the machine learning portion of the analysis.
 
 This project was developed using Jupyter Notebooks. In this blog post I'll try to explain my thought process through every step of the project.
 [Here][diabetes-data-analysis-github] you can find the original file.
@@ -430,10 +430,10 @@ Next, I used Hypotesis testing to check whether each of the factors considered i
 
 ## Hypotesis 1
 
-* **Null Hypothesis $ H_0 $**: female and male patients have equal risk of developing diabetes
-* **Alternative Hypothesis $ H_1 $**: female and male patients do not have equal risk of developing diabetes
+* **Null Hypothesis $H_0$**: female and male patients have equal risk of developing diabetes
+* **Alternative Hypothesis $H_1$**: female and male patients do not have equal risk of developing diabetes
 
-To test the first hypothesis, I used the $\\chi^2$ test of independence.
+To test the first hypothesis, I used the $x^2$ $\chi^2$ test of independence.
 
 {% highlight python %}
 
