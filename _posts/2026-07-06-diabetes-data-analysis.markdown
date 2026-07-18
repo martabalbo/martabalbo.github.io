@@ -3,6 +3,7 @@ layout: post
 title:  "Diabetes Data Analysis"
 date:   2026-07-06 11.54 +0100
 categories: data analysis
+mathjax: true
 ---
 
 This is an analysis of a diabetes dataset, which I did after completing the courses on [Kaggle][kaggle]. Afterwards, I chose a dataset from [Kaggle datasets][kaggle-datasets], and performed a basic analysis with Python. I used pandas for exploratory data analysis and hypotesis testing, and scikit-learn for the machine learning portion of the analysis.
