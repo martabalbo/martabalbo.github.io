@@ -30,9 +30,6 @@ github_username:  martabalbo
 
 # Build settings
 theme: minima # dinky, hacker, midnight, minimal, slate
-markdown: kramdown
-kramdown:
-  math_engine: mathjax
 plugins:
   - jekyll-feed
 
