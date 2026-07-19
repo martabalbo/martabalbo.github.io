@@ -576,7 +576,7 @@ sns.despine()
 
 {% endhighlight %}
 
-![qq-plot](./qq-plot.png)
+![qq-plot](/_posts/qq-plot.png)
 
 The coeffincient of correlation R squared indicates that the data is very close to the normal distribution. The discrepancy can be due to various reasons, like the fact that this coefficient does not consider the distribution of the residuals, the presence of outliers or the non-homoscedasticity of the data.
 
