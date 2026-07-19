@@ -430,10 +430,10 @@ Next, I used Hypotesis testing to check whether each of the factors considered i
 
 ## Hypotesis 1
 
-* **Null Hypothesis $H_0$**: female and male patients have equal risk of developing diabetes
-* **Alternative Hypothesis $H_1$**: female and male patients do not have equal risk of developing diabetes
+* **Null Hypothesis**: female and male patients have equal risk of developing diabetes
+* **Alternative Hypothesis**: female and male patients do not have equal risk of developing diabetes
 
-To test the first hypothesis, I used the $x^2$ $\chi^2$ test of independence.
+To test the first hypothesis, I used the chi squared test of independence.
 
 {% highlight python %}
 
@@ -449,28 +449,27 @@ print("p =", chi_square_p_value(df, "Gender", "CLASS"))
 
 {% endhighlight %}
 
-The resulting value of $ p $ is $ p = 0.028005557466185264
-$, so, with $ \\alpha = 0.05 $, I rejected the null hypotesis and concluded that the gender of the patients influences the risk of developing diabetes.
+The resulting p-value is p = 0.028005557466185264, so, with the significance level valued as 0.05, I rejected the null hypotesis and concluded that the gender of the patients influences the risk of developing diabetes.
 
 ## Hypotesis 2
 
-* **Null Hypothesis $ H_0 $**: there is no difference in age among diabetic, non-diabetic, and predict-diabetic people
-* **Alternative Hypothesis $ H_1 $**: there is a difference in age among diabetic, non-diabetic, and predict-diabetic people
+* **Null Hypothesis**: there is no difference in age among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis**: there is a difference in age among diabetic, non-diabetic, and predict-diabetic people
 
 ## Hypotesis 3
 
-* **Null Hypothesis $ H_0 $**: there is no difference in BMI among diabetic, non-diabetic, and predict-diabetic people
-* **Alternative Hypothesis $ H_1 $**: there is a difference in BMI among diabetic, non-diabetic, and predict-diabetic people
+* **Null Hypothesis**: there is no difference in BMI among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis**: there is a difference in BMI among diabetic, non-diabetic, and predict-diabetic people
 
 ## Hypotesis 4
 
-* **Null Hypothesis $ H_0 $**: there is no difference in cholesterol level among diabetic, non-diabetic, and predict-diabetic people
-* **Alternative Hypothesis $ H_1 $**: there is a difference in cholesterol level among diabetic, non-diabetic, and predict-diabetic people
+* **Null Hypothesis**: there is no difference in cholesterol level among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis**: there is a difference in cholesterol level among diabetic, non-diabetic, and predict-diabetic people
 
 ## Hypotesis 5
 
-* **Null Hypothesis $ H_0 $**: there is no difference in glucose level among diabetic, non-diabetic, and predict-diabetic people
-* **Alternative Hypothesis $ H_1 $**: there is a difference in glucose level among diabetic, non-diabetic, and predict-diabetic people
+* **Null Hypothesis**: there is no difference in glucose level among diabetic, non-diabetic, and predict-diabetic people
+* **Alternative Hypothesis**: there is a difference in glucose level among diabetic, non-diabetic, and predict-diabetic people
 
 To test these last four hypoteses, I could have used the one-way ANOVA, but I first had to check whether the needed assumptions were true. I assumed the observations are independent from one another (I eliminated the duplicates, so each observation refers to a different patient).
 
@@ -579,7 +578,7 @@ sns.despine()
 
 ![qq-plot](./qq-plot.png)
 
-The coeffincient of correlation $ R^2 $ indicates that the data is very close to the normal distribution. The discrepancy can be due to various reasons, like the fact that this coefficient does not consider the distribution of the residuals, the presence of outliers or the non-homoscedasticity of the data.
+The coeffincient of correlation R squared indicates that the data is very close to the normal distribution. The discrepancy can be due to various reasons, like the fact that this coefficient does not consider the distribution of the residuals, the presence of outliers or the non-homoscedasticity of the data.
 
 Since the data is not normally distributed and the variance is not homogeneous, I used the Kruskal-Wallis test instead of the one-way ANOVA.
 
@@ -614,7 +613,7 @@ print(results_df)
 
 {% endhighlight %}
 
-As before, with $ \\alpha = 0.05 $, I rejected the null hypoteses. I concluded that the gender, age, glucose and cholesterol levels of the patients all influence the risk of developing diabetes.
+As before, with the significance level valued as 0.05, I rejected the null hypoteses. I concluded that the gender, age, glucose and cholesterol levels of the patients all influence the risk of developing diabetes.
 
 # Predictive Analitycs
 
