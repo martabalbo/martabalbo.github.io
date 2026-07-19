@@ -420,9 +420,9 @@ plot_Chol(df)
 
 {% endhighlight %}
 
-![chol-1](_posts/chol-1.png)
-![chol-2](/_posts/chol-2.png)
-![chol-3](/blog/_posts/chol-3.png)
+![chol-1](_images/chol-1.png)
+![chol-2](/_images/chol-2.png)
+![chol-3](/chol-3.png)
 
 # Hypotesis Testing
 
