@@ -259,8 +259,8 @@ plot_gender(df)
 
 {% endhighlight %}
 
-![gender-1](./gender-1.png)
-![gender-2](./gender-2.png)
+![gender-1](/assets/gender-1.png)
+![gender-2](/assets/gender-2.png)
 
 ## Age Distribution
 
@@ -297,9 +297,9 @@ plot_age(df)
 
 {% endhighlight %}
 
-![age-1](./age-1.png)
-![age-2](./age-2.png)
-![age-3](./age-3.png)
+![age-1](/assets/age-1.png)
+![age-2](/assets/age-2.png)
+![age-3](/assets/age-3.png)
 
 
 ## BMI Distribution
@@ -338,9 +338,9 @@ plot_BMI(df)
 
 {% endhighlight %}
 
-![bmi-1](./bmi-1.png)
-![bmi-2](./bmi-2.png)
-![bmi-3](./bmi-3.png)
+![bmi-1](/assets/bmi-1.png)
+![bmi-2](/assets/bmi-2.png)
+![bmi-3](/assets/bmi-3.png)
 
 
 ## HbA1c Distribution
@@ -379,9 +379,9 @@ plot_HbA1c(df)
 
 {% endhighlight %}
 
-![HbAlc-1](./HbAlc-1.png)
-![HbAlc-2](./HbAlc-2.png)
-![HbAlc-3](./HbAlc-3.png)
+![HbAlc-1](/assets/HbAlc-1.png)
+![HbAlc-2](/assets/HbAlc-2.png)
+![HbAlc-3](/assets/HbAlc-3.png)
 
 ## Cholesterol Distribution
 
@@ -420,9 +420,9 @@ plot_Chol(df)
 
 {% endhighlight %}
 
-![chol-1](_images/chol-1.png)
-![chol-2](/_images/chol-2.png)
-![chol-3](/chol-3.png)
+![chol-1](/assets/chol-1.png)
+![chol-2](/assets/chol-2.png)
+![chol-3](/assets/chol-3.png)
 
 # Hypotesis Testing
 
@@ -576,7 +576,7 @@ sns.despine()
 
 {% endhighlight %}
 
-![qq-plot](/_posts/qq-plot.png)
+![qq-plot](/assets/qq-plot.png)
 
 The coeffincient of correlation R squared indicates that the data is very close to the normal distribution. The discrepancy can be due to various reasons, like the fact that this coefficient does not consider the distribution of the residuals, the presence of outliers or the non-homoscedasticity of the data.
 
